@@ -1,26 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 
-interface IPerson {
+interface Person {
   firstName: string;
   lastName: string;
 }
 
-interface IProps {
+interface Props {
   text: string;
   ok?: boolean;
   i?: number;
   fn?: (bob: string) => string;
-  person: IPerson;
-  handleChange: () => void;
+  person: Person;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface ITextNode {
+interface TextNode {
   text: string;
 }
 
-const TextField: React.FC<IProps> = ({ handleChange }) => {
-  //   const [count, setCount] = useState<number | null>(0);
-  const [count, setCount] = useState<ITextNode>({ text: "hello" });
+export const TextField: React.FC<Props> = ({ handleChange }) => {
+  const [count, setCount] = useState<TextNode>({ text: "hello" });
   const inputRef = useRef<HTMLInputElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -30,5 +29,3 @@ const TextField: React.FC<IProps> = ({ handleChange }) => {
     </div>
   );
 };
-
-export default TextField;
